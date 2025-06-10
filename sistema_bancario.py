@@ -9,6 +9,7 @@ menu = """
 
 saldo = 0 
 lista_valores_deposito = []
+lista_valores_saque = []
 saque_limite = 500
 extrato = ""
 numero_saques = 0
@@ -55,8 +56,9 @@ while True:
 
             # verifica se o valor de saque é menor ou igual saldo
             if valor_saque <= saldo:
-                saldo -= valor_saque
-                print(f'saldo {saldo}')
+                saldo -= valor_saque    
+                # salva os valores do saque na lista
+                lista_valores_saque.append(valor_saque)
                 print("Saque efetuado com sucesso!")
             else:
                 print(f'Valor de saque {valor_saque:.2f} é maior que o saldo {saldo:.2f}')
@@ -68,7 +70,22 @@ while True:
             print("Realize novamente a operação desejada!")
 
     elif opcao.lower() == 'e':
-        print("extrato")
+        print("------Extrato------")
+
+        print("Depósitos feitos: ")
+
+        for index, valor in enumerate(lista_valores_deposito):
+            print(f'{index + 1}º {valor:.2f}')
+
+        print('')
+        print("Saques feitos:")
+
+        for index, valor in enumerate(lista_valores_saque):
+            print(f'{index + 1}º {valor:.2f}')
+
+        print('')
+        print(f'SALDO = R$ {saldo:.2f}')
+        
 
     elif opcao.lower() == 'q':
         print("Operação finalizada!")
